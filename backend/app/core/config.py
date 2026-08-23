@@ -56,6 +56,14 @@ class Settings(BaseSettings):
     smtp_password: str = Field(default="")
     smtp_from_email: str = Field(default="")
 
+    # Same stray-whitespace guard as the AWS fields below - a leading/
+    # trailing space on SMTP_HOST or SMTP_USERNAME is enough to make
+    # smtplib fail to connect/authenticate with a cryptic error.
+    @field_validator("smtp_host", "smtp_username", "smtp_password", "smtp_from_email", mode="before")
+    @classmethod
+    def _strip_smtp_fields(cls, v: object) -> object:
+        return v.strip() if isinstance(v, str) else v
+
     # Base URL of the candidate-facing frontend, used to build submission
     # links in the assignment email (e.g. "https://myapp.vercel.app").
     frontend_public_url: str = Field(default="http://localhost:5173")
@@ -146,6 +154,18 @@ class Settings(BaseSettings):
     # Only set for S3-compatible non-AWS endpoints (e.g. MinIO in local
     # dev/tests). Leave blank for real AWS S3.
     aws_s3_endpoint_url: str = Field(default="")
+
+    # Stray leading/trailing whitespace in these (a copy-paste artifact in
+    # .env or an OS-level env var) fails boto3's bucket-name/credential
+    # validation with a confusing ParamValidationError, so trim it here
+    # once instead of at every call site.
+    @field_validator(
+        "aws_s3_bucket", "aws_region", "aws_access_key_id", "aws_secret_access_key", "aws_s3_endpoint_url",
+        mode="before",
+    )
+    @classmethod
+    def _strip_aws_fields(cls, v: object) -> object:
+        return v.strip() if isinstance(v, str) else v
 
     # -- Retention ------------------------------------------------------------
     # Rejected-at-screening and finally-rejected candidates' resume/
