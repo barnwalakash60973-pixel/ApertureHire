@@ -1,10 +1,36 @@
-# ApertureHire
+# 🚀 ApertureHire
 
-AI-powered recruitment platform that helps hiring teams evaluate technical assignments, generate candidate reports, rank applicants, and manage approval-based hiring workflows.
+<p align="center">
+  <img src="https://img.shields.io/badge/AI-Powered-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react" />
+  <img src="https://img.shields.io/badge/AWS-S3-orange?style=for-the-badge&logo=amazonaws" />
+  <img src="https://img.shields.io/badge/OpenAI-LLM-black?style=for-the-badge&logo=openai" />
+</p>
+
+<p align="center">
+AI-powered recruitment platform for assignment evaluation, candidate ranking, hiring recommendations, and approval-based recruitment workflows.
+</p>
 
 ---
 
-## Overview
+## 🌐 Live Application
+
+### Frontend
+
+🔗 https://aperture-hire.vercel.app
+
+### Backend API
+
+🔗 https://aperturehire.onrender.com
+
+### API Documentation
+
+🔗 https://aperturehire.onrender.com/docs
+
+---
+
+## 📖 Overview
 
 ApertureHire streamlines technical hiring by combining assignment management, AI-powered evaluation, automated report generation, and HR approval workflows into a single platform.
 
@@ -12,22 +38,26 @@ Instead of manually reviewing every submission, recruiters can upload candidate 
 
 ---
 
-## Key Features
+## ✨ Key Features
 
-### Candidate Management
+### 👥 Candidate Management
+
 - Create recruitment campaigns
 - Upload candidate resumes
 - Manage candidate profiles
 - Track candidate progress throughout the hiring process
 
-### Assignment Workflow
+### 📝 Assignment Workflow
+
 - Generate assignment links
 - Send assignment invitations via email
 - Candidate submission portal
 - Assignment deadline management
 - PDF submission support
+- One-time assignment submission protection
 
-### AI-Powered Evaluation
+### 🤖 AI-Powered Evaluation
+
 - Automated assignment evaluation using LLMs
 - Question-wise scoring
 - Technical competency assessment
@@ -35,7 +65,8 @@ Instead of manually reviewing every submission, recruiters can upload candidate 
 - Reasoning quality evaluation
 - Hiring recommendations
 
-### HR Review & Approval
+### ✅ HR Review & Approval
+
 - Review AI-generated reports
 - Rank candidates by score
 - Threshold-based candidate selection
@@ -43,14 +74,16 @@ Instead of manually reviewing every submission, recruiters can upload candidate 
 - Manual approval before final decisions
 - Override AI recommendations when needed
 
-### Report Generation
+### 📊 Report Generation
+
 - Detailed PDF evaluation reports
 - Per-question feedback
 - Strengths and weaknesses analysis
 - Candidate score breakdown
 - Recruiter-friendly summaries
 
-### Storage Management
+### ☁️ Storage Management
+
 Supports both Local Storage and AWS S3.
 
 Storage structure:
@@ -64,7 +97,8 @@ campaigns/
         └── report.pdf
 ```
 
-### Email Automation
+### 📧 Email Automation
+
 - Assignment invitation emails
 - Submission notifications
 - Final selection emails
@@ -72,7 +106,7 @@ campaigns/
 
 ---
 
-## System Workflow
+## 🔄 System Workflow
 
 ```text
 HR Uploads Resume
@@ -107,13 +141,13 @@ Email Notification
 
 ---
 
-## Architecture
+## 🏗 Architecture
 
 ```text
 Frontend (React + TypeScript)
             │
             ▼
-      FastAPI Backend
+       FastAPI Backend
             │
  ┌──────────┼──────────┐
  ▼          ▼          ▼
@@ -123,9 +157,10 @@ Database   Storage   Evaluation
 
 ---
 
-## Tech Stack
+## 🛠 Tech Stack
 
 ### Frontend
+
 - React
 - TypeScript
 - Vite
@@ -133,38 +168,45 @@ Database   Storage   Evaluation
 - React Router
 
 ### Backend
+
 - FastAPI
 - SQLAlchemy
 - Pydantic
 - PyMuPDF
 
 ### AI & Evaluation
+
 - LangChain
 - LangSmith
-- OpenAI / Azure OpenAI
+- OpenAI
+- Azure OpenAI
 
 ### Storage
+
 - Local Storage
 - AWS S3
 
 ### DevOps
+
 - Docker
 - GitHub Actions
 - Render
 - Vercel
 
 ### Monitoring
+
 - MLflow
 - LangSmith
 
 ---
 
-## Local Development
+## 🚀 Local Development
 
 ### Clone Repository
 
 ```bash
 git clone https://github.com/barnwalakash60973-pixel/ApertureHire.git
+
 cd ApertureHire
 ```
 
@@ -176,6 +218,7 @@ cd ApertureHire
 cd backend
 
 python -m venv venv
+
 venv\Scripts\activate
 
 pip install -r requirements.txt
@@ -227,6 +270,7 @@ http://localhost:8000/docs
 cd frontend
 
 npm install
+
 npm run dev
 ```
 
@@ -238,7 +282,7 @@ http://localhost:5173
 
 ---
 
-## Docker
+## 🐳 Docker
 
 Build image:
 
@@ -254,7 +298,7 @@ docker run -p 8000:8000 aperturehire
 
 ---
 
-## Deployment
+## ☁️ Deployment
 
 ### Backend (Render)
 
@@ -286,7 +330,34 @@ dist
 
 ---
 
-## CI/CD
+## 🔐 AWS S3 Storage
+
+To enable S3 storage, configure the following environment variables:
+
+```env
+STORAGE_BACKEND=s3
+
+AWS_S3_BUCKET=your-bucket-name
+AWS_REGION=ap-south-1
+
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+```
+
+Uploaded files are stored securely in:
+
+```text
+campaigns/
+└── campaign_id/
+    └── candidate_id/
+        ├── resume.pdf
+        ├── submission.pdf
+        └── report.pdf
+```
+
+---
+
+## 🔄 CI/CD
 
 GitHub Actions automatically:
 
@@ -303,19 +374,41 @@ Workflow location:
 
 ---
 
-## Future Enhancements
+## 🌟 Highlights
 
-- DVC data versioning
+✅ AI-powered assignment evaluation
+
+✅ Automated PDF report generation
+
+✅ HR approval workflow
+
+✅ AWS S3 file storage
+
+✅ OpenAI / Azure OpenAI integration
+
+✅ Candidate ranking and recommendations
+
+✅ Email automation
+
+✅ Dockerized deployment
+
+✅ Render + Vercel hosting
+
+---
+
+## 🔮 Future Enhancements
+
+- PostgreSQL support
 - Interview scheduling
 - Multi-tenant support
 - Role-based access control (RBAC)
 - Analytics dashboard
-- Advanced recruiter insights
 - Candidate comparison reports
+- Advanced recruiter insights
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Akash Kumar Barnwal**
 
@@ -324,8 +417,10 @@ IIIT Lucknow
 
 GitHub: https://github.com/barnwalakash60973-pixel
 
+LinkedIn: https://www.linkedin.com/in/akash-kumar-barnwal-31968a380/
+
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License.

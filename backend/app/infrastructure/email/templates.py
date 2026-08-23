@@ -43,6 +43,11 @@ Deadline:
 Instructions:
 Open the assignment above, work through it, then submit your solution through the Submission Portal link before the deadline.
 
+Important Notice:
+• You are allowed to submit your assignment only once.
+• After a successful submission, you will not be able to modify, replace, or re-upload your files.
+• Please carefully review your work and ensure you are uploading the correct files before submitting.
+
 We wish you the best of luck.
 
 Best regards,
