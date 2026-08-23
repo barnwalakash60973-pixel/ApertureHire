@@ -1,0 +1,38 @@
+# Python virtual environment
+venu/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.claude/
+
+# Backend secrets and local state
+backend/.env
+backend/data/
+backend/storage/
+backend/reviewer.db
+backend/*.db
+backend/mlruns/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# DVC
+.dvc/cache/
+.dvc/tmp/
+
+# Logs
+*.log
+logs/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

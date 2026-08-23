@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-base: #0a0b0f;
+  --color-surface: #14161d;
+  --color-surface-2: #1b1e27;
+  --color-border: #262933;
+  --color-ink: #f2f3f5;
+  --color-ink-muted: #a1a5b3;
+  --color-ink-faint: #6b6f7d;
+  --color-signal: #5468ff;
+  --color-signal-soft: rgba(84, 104, 255, 0.35);
+}
+
+html.light {
+  --color-base: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f4f6;
+  --color-border: #e5e5ea;
+  --color-ink: #131419;
+  --color-ink-muted: #5b5f6d;
+  --color-ink-faint: #8b8fa3;
+  --color-signal: #4353e6;
+  --color-signal-soft: rgba(67, 83, 230, 0.22);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  color-scheme: dark;
+}
+html.light {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-ink);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-signal-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* thin, quiet scrollbar to match the graphite surface language */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+  border: 2px solid var(--color-base);
+}
