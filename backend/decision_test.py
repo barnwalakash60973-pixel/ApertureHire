@@ -100,12 +100,22 @@ with TestClient(app) as client:
                     json={"mode": "threshold", "score_threshold": 7.5})
     check("threshold eval 200", r.status_code == 200, r.text[:300])
     b = r.json()
+    check("2 pending selection at >=7.5", b["pending_selected_count"] == 2, b)
+    check("2 pending rejection below 7.5", b["pending_rejected_count"] == 2, b)
+
+    r = client.post(f"/api/v1/campaigns/{cid}/evaluations/approve", headers=H)
+    check("approve 200", r.status_code == 200, r.text[:300])
+    b = r.json()
     check("2 selected at >=7.5", b["final_selected_count"] == 2, b)
     check("2 rejected below 7.5", b["final_rejected_count"] == 2, b)
 
     print("\n[B] Top-N mode (spec's 'Top 20' example, N=2 here)")
     cid2, ids2 = client.portal.call(seed, "topn", [9.0, 8.5, 8.0, 7.9])
     r = client.post(f"/api/v1/campaigns/{cid2}/evaluations", headers=H, json={"mode": "top_n", "top_n": 2})
+    b = r.json()
+    check("exactly N pending selected", b["pending_selected_count"] == 2, b)
+
+    r = client.post(f"/api/v1/campaigns/{cid2}/evaluations/approve", headers=H)
     b = r.json()
     check("exactly N selected", b["final_selected_count"] == 2, b)
     st = client.portal.call(statuses, ids2)
@@ -119,8 +129,6 @@ with TestClient(app) as client:
     r = client.post(f"/api/v1/campaigns/{cid3}/evaluations", headers=H, json={"mode": "manual"})
     b = r.json()
     check("graded both", b["evaluated_count"] == 2, b)
-    check("selected nobody", b["final_selected_count"] == 0, b)
-    check("rejected nobody", b["final_rejected_count"] == 0, b)
     st = client.portal.call(statuses, ids3)
     check("left at 'evaluated' awaiting HR", all(v == "evaluated" for v in st.values()), st)
 
